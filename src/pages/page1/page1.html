@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Page One</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngFor="let item of items">
+    <ion-card-header>
+      {{item.name}}
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-segment *ngIf="!item.hasOwnProperty('status')" color="primary">
+        <ion-segment-button (ionSelect)="call(item)">
+          go
+        </ion-segment-button>
+      </ion-segment>
+
+      <ion-segment *ngIf="item.values" color="primary" [(ngModel)]="item.status">
+        <ion-segment-button *ngFor="let value of item.values" value="{{value}}" (ionSelect)="call(item)">
+          {{value}}
+        </ion-segment-button>
+      </ion-segment>
+
+      <ion-range *ngIf="item.number" pin min="{{item.number.min}}" max="{{item.number.max}}" [(ngModel)]="item.status">
+      </ion-range>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
