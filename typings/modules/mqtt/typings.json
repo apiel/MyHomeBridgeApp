@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/5f59aa79209b1ca757d0168663daa5cb9af8e67a/mqtt/index.d.ts",
+    "raw": "registry:dt/mqtt#0.0.0+20170123053929",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/5f59aa79209b1ca757d0168663daa5cb9af8e67a/mqtt/index.d.ts"
+  }
+}
