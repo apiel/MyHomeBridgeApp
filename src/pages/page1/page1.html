@@ -22,8 +22,8 @@
         </ion-segment-button>
       </ion-segment>
 
-      <ion-segment *ngIf="item.values" color="primary" [(ngModel)]="item.status">
-        <ion-segment-button *ngFor="let value of item.values" value="{{value}}" (ionSelect)="call(item)">
+      <ion-segment *ngIf="item.values" color="primary" [(ngModel)]="item.status" (ionChange)="call(item)">
+        <ion-segment-button *ngFor="let value of item.values" value="{{value}}">
           {{value}}
         </ion-segment-button>
       </ion-segment>

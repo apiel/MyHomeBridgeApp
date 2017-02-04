@@ -4,6 +4,7 @@ import Mqtt from 'mqtt';
 @Injectable()
 export default class {
     mqtt: any;
+    protected _subscribeCallback: { [topic: string]: (message: string) => any } = {};
 
     constructor() {
         console.log('contruct mqtt');
@@ -11,34 +12,27 @@ export default class {
     }
 
     init() {
-    //   var client = Mqtt.connect('ws://127.0.0.1:3333') // you add a ws:// url here
-    //   client.subscribe('item/garage/chill/light')
- 
-    //   client.on("message", function (topic, payload) {
-    //     alert([topic, payload].join(": "))
-    //     client.end()
-    //   })
- 
-    //   client.publish("mqtt/demo", "hello world!")
-
-        //this.mqtt = Mqtt.connect('mqtt://192.168.0.67');
-        //this.mqtt = Mqtt.connect('mqtt://127.0.0.1:3333');
         this.mqtt = Mqtt.connect('ws://127.0.0.1:3030');
-        this.mqtt.subscribe('item/garage/chill/light');
+        this.subscribe('item/garage/table/light', msg => console.log(msg));
 
-        this.mqtt.on('error', function (error) {
-            console.error(error);
-        });
+        this.mqtt.on('error', error => console.error);
+        this.mqtt.on('connect', connack => console.log('connected to mqtt: ', connack) );
 
-        this.mqtt.on('connect', function (connack) {
-            console.log(connack);
-            console.log('connected to mqtt');
-            // this.mqtt.publish('presence', 'Hello mqtt');
-        });
+        this.mqtt.on('message', this._consume.bind(this));
+    }
 
-        this.mqtt.on('message', function (topic, message) {
-            console.log(topic);
-            console.log(message.toString());
-        });
+    protected _consume(topic: string, message: any) {
+        if (topic in this._subscribeCallback) {
+           this._subscribeCallback[topic](message.toString());
+        }
+    }
+
+    subscribe(topic: string, callback: (message: string) => any) {
+        this.mqtt.subscribe(topic);
+        this._subscribeCallback[topic] = callback;
+    }
+
+    publish(topic: string, message: string) {
+        this.mqtt.publish(topic, message, { retain: true });
     }
 }
