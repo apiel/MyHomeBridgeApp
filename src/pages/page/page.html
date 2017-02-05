@@ -39,7 +39,7 @@
         </ion-segment-button>
       </ion-segment>
 
-      <ion-range *ngIf="item.number" pin min="{{item.number.min}}" max="{{item.number.max}}" [(ngModel)]="item.status">
+      <ion-range *ngIf="item.number" pin min="{{item.number.min}}" max="{{item.number.max}}" [(ngModel)]="item.status" (ionChange)="call(item)">
       </ion-range>
 
     </ion-card-content>

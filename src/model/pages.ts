@@ -6,6 +6,10 @@ export default class {
     sequence: number = 0;
     pages: { [key: string]: PageSettings } = {};
 
+    constructor() {
+        this.load();
+    }
+
     new() {
         this.add('page-' + this.sequence++);
         this.save();
@@ -38,6 +42,7 @@ export default class {
 
     load() {
         const data = JSON.parse(localStorage.getItem(this.getStoreKey()));
+        console.log('Pages data: ', data);
         if (data) {
             this.sequence = data.sequence;
             for(const key of data.pages) {
