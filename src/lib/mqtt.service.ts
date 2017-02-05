@@ -13,7 +13,6 @@ export default class {
 
     init() {
         this.mqtt = Mqtt.connect('ws://127.0.0.1:3030');
-        this.subscribe('item/garage/table/light', msg => console.log(msg));
 
         this.mqtt.on('error', error => console.error);
         this.mqtt.on('connect', connack => console.log('connected to mqtt: ', connack) );

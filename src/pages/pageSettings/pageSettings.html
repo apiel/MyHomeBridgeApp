@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Page settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+      <ion-label color="primary" floating>Name</ion-label>
+      <ion-input clearInput [(ngModel)]="options.name" (ngModelChange)="onInputChange()"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" floating>MQTT Uri</ion-label>
+      <ion-input clearInput [(ngModel)]="options.uri" (ngModelChange)="onInputChange()"></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label color="primary" floating>Topic definitions</ion-label>
+      <ion-input clearInput [(ngModel)]="options.topicDefinition" (ngModelChange)="onInputChange()"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <button ion-button small icon-left [disabled]="!inputChanged" (click)="onSave()">
+      <ion-icon name="checkmark"></ion-icon>
+      Save
+    </button>
+    <button ion-button small color="light" [disabled]="!inputChanged" (click)="onCancel()">Cancel</button>
+  </ion-item>
+</ion-content>

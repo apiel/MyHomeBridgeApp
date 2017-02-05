@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import MqttService from '../../lib/mqtt.service';
 import { NavController } from 'ionic-angular';
+import { PageSettings } from '../pageSettings/pageSettings';
+import PageSettingsModel from '../../model/pageSettings';
 
 class Item{
   name: string; 
@@ -16,6 +18,13 @@ class Item{
   providers: [MqttService]
 })
 export class Page1 {
+  pushPage: any = PageSettings;
+  options: PageSettingsModel = {
+    name: 'Garage',
+    uri: 'ws://127.0.0.1:3030',
+    topicDefinition: 'hello'
+  };
+
   items: Item[] = [
     {name: "Light table", key: "item/garage/table/light", status: "off", values: ["on", "off"]},
     {name: "Floor heating on", key: "action/floorHeatingOn"},
@@ -37,8 +46,7 @@ export class Page1 {
     }
   }
 
-  call(item: any) {
-    console.log(item);
+  call(item: Item) {
     this.mqttService.mqtt.publish(item.key, item.status);
   }
 }
