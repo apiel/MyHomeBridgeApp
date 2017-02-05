@@ -7,5 +7,6 @@ export default class pageSettings extends ModelHelper<pageSettings> {
 
     constructor(key: string = 'default') { 
         super('page/' + key);
+        this.load();
     }
 }

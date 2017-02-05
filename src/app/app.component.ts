@@ -30,12 +30,10 @@ export class MyApp {
   }
 
   openPage(key: string) {
-    console.log('Open page: ', key);
     this.nav.setRoot(Page, {'key': key});
   }
 
   newPage() {
-    console.log('new page');
     this.pages.new();
   }
 }

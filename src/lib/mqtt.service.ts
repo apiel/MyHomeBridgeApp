@@ -7,7 +7,6 @@ export default class {
     protected _subscribeCallback: { [topic: string]: (message: string) => any } = {};
 
     constructor() {
-        console.log('contruct mqtt');
         this.init();
     }
 
