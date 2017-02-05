@@ -20,6 +20,11 @@ export default class {
         this.pages[key] = page;
     }
 
+    delete(key: string) {
+        delete(this.get(key));
+        this.save();
+    }
+
     get(key: string) {
         return this.pages[key ? key : this.keys()[0]];
     }
