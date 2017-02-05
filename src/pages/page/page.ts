@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import MqttService from '../../lib/mqtt.service';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { PageSettings } from '../pageSettings/pageSettings';
 import PageSettingsModel from '../../model/pageSettings';
+import Pages from '../../model/pages';
 
 class Item{
   name: string; 
@@ -13,18 +14,14 @@ class Item{
 }
 
 @Component({
-  selector: 'page-page1',
-  templateUrl: 'page1.html',
+  selector: 'page-page',
+  templateUrl: 'page.html',
   // providers: [MqttService, PageSettingsModel]
 })
-export class Page1 {
+export default class {
   pushPage: any = PageSettings;
-  // options: PageSettingsModel = {
-  //   name: 'Garage',
-  //   uri: 'ws://127.0.0.1:3030',
-  //   topicDefinition: 'hello'
-  // };
-  key: string = 'heloKeyOfPage';
+  settings: PageSettingsModel;
+  key: string;
 
   items: Item[] = [
     {name: "Light table", key: "item/garage/table/light", status: "off", values: ["on", "off"]},
@@ -35,9 +32,11 @@ export class Page1 {
     {name: "Light Kitchen", key: "item/garage/kitchen/light", status: "on", values: ["on", "off"]}
   ];
 
-  constructor(public navCtrl: NavController, private mqttService: MqttService, public settings: PageSettingsModel) {
+  constructor(public navCtrl: NavController, public params: NavParams, public pages: Pages, private mqttService: MqttService) {
+    this.key = this.params.get('key');
+    this.settings = this.pages.get(this.key);
     this._loadConsumers();
-  }  
+  }
 
   protected _loadConsumers() {
     for(let item of this.items) {

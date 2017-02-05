@@ -4,7 +4,7 @@
       <ion-title>MyHomeBridge</ion-title>
 
       <ion-buttons end>
-        <button ion-button icon-only>
+        <button ion-button icon-only (click)="newPage()">
           <ion-icon name="add"></ion-icon>
         </button>
       </ion-buttons>
@@ -13,8 +13,8 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+      <button menuClose ion-item *ngFor="let key of pages.keys()" (click)="openPage(key)">
+        {{pages.get(key).name}}
       </button>
     </ion-list>
   </ion-content>

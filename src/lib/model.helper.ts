@@ -1,14 +1,18 @@
 
-abstract class ModelHelper <T> {
-    constructor() {
+class ModelHelper <T> {
+    constructor(private readonly keyStorage?: string) {
         console.log('ModelHelper constructor: ', this.getKey());
         this.load();
     }
 
-    protected abstract getKey?();
+    protected getKey?(): string {
+        return this.keyStorage;
+    }
 
     save?(data?: T) {
-        localStorage.setItem(this.getKey(), JSON.stringify(data ? data : this));
+        let copy = Object.assign({}, data ? data : this);
+        delete(copy['keyStorage']);
+        localStorage.setItem(this.getKey(), JSON.stringify(copy));
         this.load();
     }
 

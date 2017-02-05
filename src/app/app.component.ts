@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+import Pages from '../model/pages';
 
-import { Page1 } from '../pages/page1/page1';
+import Page from '../pages/page/page';
 
 
 @Component({
@@ -11,32 +12,30 @@ import { Page1 } from '../pages/page1/page1';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Page1;
+  rootPage: any = Page;
 
-  pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, public pages: Pages) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Page One', component: Page1 }
-    ];
-
+    if (!this.pages.keys().length) {
+      this.newPage();
+    }
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+  openPage(key: string) {
+    console.log('Open page: ', key);
+    this.nav.setRoot(Page, {'key': key});
+  }
+
+  newPage() {
+    console.log('new page');
+    this.pages.new();
   }
 }

@@ -1,13 +1,11 @@
-import { Injectable } from '@angular/core';
 import ModelHelper from '../lib/model.helper';
 
-@Injectable()
 export default class pageSettings extends ModelHelper<pageSettings> {
-    name: string; // here we could define default
+    name: string = 'New page';
     uri: string; 
     topicDefinition: string;
 
-    protected getKey?() {
-        return 'thisisatest';
+    constructor(key: string = 'default') { 
+        super('page/' + key);
     }
 }

@@ -4,10 +4,14 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>{{settings.name}}</ion-title>
+    <ion-title>
+      {{settings.name}}
+      <ion-badge color="secondary" *ngIf="mqttService.mqtt.connected">connected</ion-badge>
+      <ion-badge color="light" *ngIf="!mqttService.mqtt.connected">disconnected</ion-badge>
+    </ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only [navPush]="pushPage" [navParams]="key">
+      <button ion-button icon-only [navPush]="pushPage" [navParams]="settings">
         <ion-icon name="settings"></ion-icon>
       </button>
     </ion-buttons>

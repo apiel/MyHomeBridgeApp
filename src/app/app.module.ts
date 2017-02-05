@@ -1,15 +1,15 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Page1 } from '../pages/page1/page1';
+import Page from '../pages/page/page';
 import { PageSettings } from '../pages/pageSettings/pageSettings';
 import MqttService from '../lib/mqtt.service';
-import PageSettingsModel from '../model/pageSettings';
+import Pages from '../model/pages';
 
 @NgModule({
   declarations: [
     MyApp,
-    Page1,
+    Page,
     PageSettings
   ],
   imports: [
@@ -18,10 +18,10 @@ import PageSettingsModel from '../model/pageSettings';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Page1,
+    Page,
     PageSettings
   ],
-  providers: [MqttService, PageSettingsModel, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [MqttService, Pages, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {
   constructor(private mqttService: MqttService) {}
