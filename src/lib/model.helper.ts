@@ -1,6 +1,7 @@
 
 abstract class ModelHelper <T> {
     constructor() {
+        console.log('ModelHelper constructor: ', this.getKey());
         this.load();
     }
 

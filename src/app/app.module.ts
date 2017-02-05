@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { PageSettings } from '../pages/pageSettings/pageSettings';
 import MqttService from '../lib/mqtt.service';
+import PageSettingsModel from '../model/pageSettings';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import MqttService from '../lib/mqtt.service';
     Page1,
     PageSettings
   ],
-  providers: [MqttService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [MqttService, PageSettingsModel, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {
   constructor(private mqttService: MqttService) {}

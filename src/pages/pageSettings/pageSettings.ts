@@ -6,7 +6,7 @@ import PageSettingsModel from '../../model/pageSettings';
 @Component({
   selector: 'page-pageSettings',
   templateUrl: 'pageSettings.html',
-  providers: [PageSettingsModel]
+  // providers: [PageSettingsModel]
 })
 export class PageSettings {
   inputChanged: boolean;

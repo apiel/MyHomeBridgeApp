@@ -15,15 +15,16 @@ class Item{
 @Component({
   selector: 'page-page1',
   templateUrl: 'page1.html',
-  providers: [MqttService]
+  // providers: [MqttService, PageSettingsModel]
 })
 export class Page1 {
   pushPage: any = PageSettings;
-  options: PageSettingsModel = {
-    name: 'Garage',
-    uri: 'ws://127.0.0.1:3030',
-    topicDefinition: 'hello'
-  };
+  // options: PageSettingsModel = {
+  //   name: 'Garage',
+  //   uri: 'ws://127.0.0.1:3030',
+  //   topicDefinition: 'hello'
+  // };
+  key: string = 'heloKeyOfPage';
 
   items: Item[] = [
     {name: "Light table", key: "item/garage/table/light", status: "off", values: ["on", "off"]},
@@ -34,7 +35,7 @@ export class Page1 {
     {name: "Light Kitchen", key: "item/garage/kitchen/light", status: "on", values: ["on", "off"]}
   ];
 
-  constructor(public navCtrl: NavController, private mqttService: MqttService) {
+  constructor(public navCtrl: NavController, private mqttService: MqttService, public settings: PageSettingsModel) {
     this._loadConsumers();
   }  
 
