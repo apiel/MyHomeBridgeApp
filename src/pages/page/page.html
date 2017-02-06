@@ -6,8 +6,8 @@
 
     <ion-title>
       {{settings.name}}
-      <ion-badge color="secondary" *ngIf="mqttService.mqtt.connected">connected</ion-badge>
-      <ion-badge color="light" *ngIf="!mqttService.mqtt.connected">disconnected</ion-badge>
+      <ion-badge color="secondary" *ngIf="mqttService.isConnected()">connected</ion-badge>
+      <ion-badge color="light" *ngIf="!mqttService.isConnected()">disconnected</ion-badge>
     </ion-title>
 
     <ion-buttons end>

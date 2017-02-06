@@ -19,6 +19,7 @@ class Item{
   // providers: [MqttService, PageSettingsModel]
 })
 export default class {
+  mqttService: MqttService;
   pushPage: any = PageSettings;
   settings: PageSettingsModel;
   key: string;
@@ -32,10 +33,18 @@ export default class {
     {name: "Light Kitchen", key: "item/garage/kitchen/light", status: "on", values: ["on", "off"]}
   ];
 
-  constructor(public navCtrl: NavController, public params: NavParams, public pages: Pages, private mqttService: MqttService) {
+  constructor(public navCtrl: NavController, public params: NavParams, public pages: Pages /*, private mqttService: MqttService*/) {
     this.key = this.params.get('key');
     this.settings = this.pages.get(this.key);
-    this._loadConsumers();
+    this._connect();
+  }
+
+  protected _connect() {
+    this.mqttService = new MqttService();
+    if (this.settings.uri) {
+      this.mqttService.init(this.settings.uri);
+      this._loadConsumers();
+    }
   }
 
   protected _loadConsumers() {

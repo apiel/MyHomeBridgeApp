@@ -6,12 +6,12 @@ export default class {
     mqtt: any;
     protected _subscribeCallback: { [topic: string]: (message: string) => any } = {};
 
-    constructor() {
-        this.init();
-    }
+    // constructor() {
+    //     this.init('ws://127.0.0.1:3030');
+    // }
 
-    init() {
-        this.mqtt = Mqtt.connect('ws://127.0.0.1:3030');
+    init(uri: string) {
+        this.mqtt = Mqtt.connect(uri);
 
         this.mqtt.on('error', error => console.error);
         this.mqtt.on('connect', connack => console.log('connected to mqtt: ', connack) );
@@ -26,11 +26,19 @@ export default class {
     }
 
     subscribe(topic: string, callback: (message: string) => any) {
-        this.mqtt.subscribe(topic);
-        this._subscribeCallback[topic] = callback;
+        if (this.mqtt) {
+            this.mqtt.subscribe(topic);
+            this._subscribeCallback[topic] = callback;            
+        }        
     }
 
     publish(topic: string, message: string) {
-        this.mqtt.publish(topic, message, { retain: true });
+        if (this.mqtt) {
+            this.mqtt.publish(topic, message, { retain: true });
+        }
     }
+
+    isConnected() {
+        return this.mqtt ? this.mqtt.connected : false;
+    }    
 }

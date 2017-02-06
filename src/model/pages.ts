@@ -21,7 +21,8 @@ export default class {
     }
 
     delete(key: string) {
-        delete(this.get(key));
+        // delete(this.get(key));
+        // delete also pageSettings
         this.save();
     }
 

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      {{params.get('title')}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-content>
+        <ion-item>
+           {{params.get('text')}}
+        </ion-item>
+
+        <button ion-button full (click)="params.get('action')()">OK, let's do it</button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

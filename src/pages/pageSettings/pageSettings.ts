@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-
 import { NavController, NavParams } from 'ionic-angular';
 import PageSettingsModel from '../../model/pageSettings';
 import Pages from '../../model/pages';
+import Confirm from '../confirm/confirm';
 
 @Component({
   selector: 'page-pageSettings',
@@ -10,6 +10,7 @@ import Pages from '../../model/pages';
   // providers: [PageSettingsModel]
 })
 export class PageSettings {
+  pushPage: any = Confirm;
   inputChanged: boolean;
   settings: PageSettingsModel;
   options: PageSettingsModel;
@@ -42,6 +43,7 @@ export class PageSettings {
 
   onDelete() {
     console.log('delete');
+    // also need to confirm
     // this.pages.delete(this.key);
   }
 }

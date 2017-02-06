@@ -5,7 +5,7 @@
     </button>
     <ion-title>Page settings</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="onDelete()">
+      <button ion-button icon-only [navPush]="pushPage" [navParams]="{title: 'Confirm', text: 'This page will be deleted!', action: onDelete}">
         <ion-icon name="trash"></ion-icon>
       </button>
     </ion-buttons>
