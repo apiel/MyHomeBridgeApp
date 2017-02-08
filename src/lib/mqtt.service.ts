@@ -34,7 +34,7 @@ export default class {
 
     publish(topic: string, message: string) {
         if (this.mqtt) {
-            this.mqtt.publish(topic, message, { retain: true });
+            this.mqtt.publish(topic, message, {qos: 0, retain: true});
         }
     }
 
