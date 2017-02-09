@@ -40,11 +40,11 @@ export default class {
   constructor(public navCtrl: NavController, public params: NavParams, public pages: Pages /*, private mqttService: MqttService*/) {
     this.key = this.params.get('key');
     this.settings = this.pages.get(this.key);
-    this._connect();
+    this.mqttService = new MqttService();
+    this.connect();
   }
 
-  protected _connect() {
-    this.mqttService = new MqttService();
+  connect = () => {
     if (this.settings.uri) {
       this.mqttService.init(this.settings.uri);
       this._loadItems();
@@ -53,7 +53,7 @@ export default class {
 
   protected _loadItems() {
     if (this.settings.topicDefinition) {
-      this.mqttService.subscribe('items/definitions', msg => {
+      this.mqttService.subscribe(this.settings.topicDefinition, msg => {
         this.items = JSON.parse(msg);
         this._loadConsumers();
       });
@@ -62,7 +62,7 @@ export default class {
 
   protected _loadConsumers() {
     for(let item of this.items) {
-      if (!item.status) {
+      if (item.values && !item.status) {
         item.status = '';
       }
       this.mqttService.subscribe(item.key, msg => item.status = msg);

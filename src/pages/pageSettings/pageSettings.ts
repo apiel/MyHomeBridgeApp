@@ -38,6 +38,7 @@ export class PageSettings {
 
   onSave() {
     this.settings.save(this.options);
+    this.params.get('connect')();
     this.inputChanged = false;
   }
 

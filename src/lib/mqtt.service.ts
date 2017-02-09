@@ -11,6 +11,8 @@ export default class {
     // }
 
     init(uri: string) {
+        if (this.mqtt) this.mqtt.end();
+
         this.mqtt = Mqtt.connect(uri);
 
         this.mqtt.on('error', error => console.error);
