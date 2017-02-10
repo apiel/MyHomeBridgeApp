@@ -22,7 +22,8 @@
 
   <ion-card *ngFor="let item of items">
     <ion-card-header>
-      {{item.name}}
+        <ion-icon name="{{ getIcon(item) }}" style="margin-right: 20px;"></ion-icon>
+        {{item.name}}
     </ion-card-header>
 
     <ion-card-content>

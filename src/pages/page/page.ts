@@ -72,4 +72,13 @@ export default class {
   call(item: Item) {
     this.mqttService.mqtt.publish(item.key, item.status);
   }
+
+  getIcon(item: Item) {
+    let icon = 'finger-print';
+    const name = item.name.toLowerCase();
+    if (name.indexOf('light') !== -1) icon = 'bulb';
+    else if (name.indexOf('heat') !== -1) icon = 'flame';
+    else if (name.indexOf('therm') !== -1 || name.indexOf('temperature') !== -1) icon = 'thermometer';
+    return icon;
+  }
 }
