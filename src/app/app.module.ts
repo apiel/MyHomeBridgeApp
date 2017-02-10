@@ -24,8 +24,8 @@ import Pages from '../model/pages';
     PageSettings,
     Confirm
   ],
-  providers: [/*MqttService,*/ Pages, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [/*MqttService,*/ Pages, {provide: ErrorHandler, useClass: IonicErrorHandler}],
 })
 export class AppModule {
-  constructor(/*private mqttService: MqttService*/) {}
+  constructor() { }
 }

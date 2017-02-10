@@ -32,25 +32,12 @@ $colors: (
 );
 
 
-// App iOS Variables
-// --------------------------------------------------
-// iOS only Sass variables can go here
-
-
-
-
-// App Material Design Variables
-// --------------------------------------------------
-// Material Design only Sass variables can go here
-
-
-
-
-// App Windows Variables
-// --------------------------------------------------
-// Windows only Sass variables can go here
-
-
+$toolbar-background: #009580;
+// $text-color:        #fff;
+// $card-md-header-color: #fff;
+// $card-wp-header-color: #fff;
+// $card-ios-header-color: #fff;
+// $background-color:  #fff;
 
 
 // App Theme
@@ -60,7 +47,8 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
+@import "ionic.theme.dark";
+@import "ionic.theme.dark.md";
 
 
 // Ionicons
@@ -76,3 +64,4 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
