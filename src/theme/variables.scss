@@ -28,12 +28,13 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  base:       #009580
 );
 
 
-$toolbar-background: #009580;
-$text-input-highlight-color-valid: #009580;
+$toolbar-background: color($colors, base);
+$text-input-highlight-color-valid: color($colors, base);
 // $text-color:        #fff;
 // $card-md-header-color: #fff;
 // $card-wp-header-color: #fff;

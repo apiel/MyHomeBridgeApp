@@ -74,11 +74,13 @@ export default class {
   }
 
   getIcon(item: Item) {
-    let icon = 'finger-print';
+    let icon = 'flask';
     const name = item.name.toLowerCase();
     if (name.indexOf('light') !== -1) icon = 'bulb';
     else if (name.indexOf('heat') !== -1) icon = 'flame';
     else if (name.indexOf('therm') !== -1 || name.indexOf('temperature') !== -1) icon = 'thermometer';
+    else if (name.indexOf('plug') !== -1 || name.indexOf('outlet') !== -1) icon = 'outlet';
+    else if (name.indexOf('weather') !== -1) icon = 'partly-sunny';
     return icon;
   }
 }
